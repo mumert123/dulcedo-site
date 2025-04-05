@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dulcedo Languorem</title>
   <style>
+    /* senin mevcut stillerin aynı kaldı */
     body {
       margin: 0;
       padding: 0;
@@ -78,7 +79,8 @@
   </style>
 </head>
 <body>
-  <audio autoplay loop>
+  <!-- Otomatik başlamasın, ID veriyoruz -->
+  <audio id="mymusic" loop>
     <source src="muzik.mp3" type="audio/mpeg">
   </audio>
 
@@ -112,6 +114,7 @@
     function showStep2() {
       document.getElementById('step1').classList.add('hidden');
       document.getElementById('step2').classList.remove('hidden');
+      document.getElementById('mymusic').play(); // Müzik burada başlar
     }
 
     function showStep3() {
