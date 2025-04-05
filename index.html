@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dulcedo Languorem</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background-color: #ffe6f0;
+      text-align: center;
+      color: #d63384;
+      overflow-x: hidden;
+    }
+    .container {
+      padding: 2rem;
+    }
+    .hidden {
+      display: none;
+    }
+    .cute-img {
+      width: 250px;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      padding: 0.5rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 1rem;
+      margin: 0.5rem;
+      background-color: #ff99cc;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #ff66aa;
+    }
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: floatUp 4s linear infinite;
+      opacity: 0.7;
+      border-radius: 50% 50% 0 0;
+    }
+    .heart::after, .heart::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    Tarayıcınız müziği desteklemiyor.
+  </audio>
+
+  <div class="container" id="step1">
+    <img src="https://placekitten.com/300/300" alt="Yavru Kedi" class="cute-img">
+    <h2>Dulcedo Languorem hastalığına yakalanmışsın!</h2>
+    <p>Bunun nedenini öğrenmek ister misin?</p>
+    <button class="btn" onclick="showStep2()">Evet</button>
+    <button class="btn" id="noBtn1" onmouseover="moveButton(this)">Hayır</button>
+  </div>
+
+  <div class="container hidden" id="step2">
+    <img id="customImage" src="https://placekitten.com/301/301" alt="Tatlı Kedi" class="cute-img">
+    <p>
+      Bu hastalık bir tatlılık hastalığıdır. Bu hastalık sevdiğinden uzak kalınca oluşur.<br>
+      Bu yüzden hemen benim kollarımın arasına girip uyuman gerek.<br>
+      Ancak bu sadece hafifletir. Bunun geçmesi için Mert'i affetmen ve onunla sevgili olman gerek.<br><br>
+      Benimle sevgili olur musun?
+    </p>
+    <button class="btn" onclick="showStep3()">Evet</button>
+    <button class="btn" id="noBtn2" onmouseover="moveButton(this)">Hayır</button>
+  </div>
+
+  <div class="container hidden" id="step3">
+    <img src="https://placekitten.com/302/302" alt="Mutlu Kedi" class="cute-img">
+    <h2>Tebrikler, iyileştiniz!</h2>
+    <p>Evrenin en mükemmel çifti oldunuz.</p>
+  </div>
+
+  <script>
+    function showStep2() {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function showStep3() {
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
+    }
+
+    function moveButton(btn) {
+      const x = Math.floor(Math.random() * (window.innerWidth - 100));
+      const y = Math.floor(Math.random() * (window.innerHeight - 100));
+      btn.style.position = 'absolute';
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 4000);
+    }, 300);
+  </script>
+</body>
+</html>
